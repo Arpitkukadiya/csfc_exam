@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SQLMap Assignment — Interactive Guide</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="bg-anim"></div>
+  <header class="site-header">
+    <h1>Practical Assignment — SQLMap & XSS Guide</h1>
+    <p class="sub">Animated single-page guide • Copy commands • Download PDF • Step-by-step walkthrough</p>
+    <div class="cta">
+      <a class="btn" id="downloadPdf" href="commands_guide.pdf" download>Download PDF Guide</a>
+     <!-- <a class="btn ghost" id="openZip" href="#" onclick="alert('Use the ZIP provided by the assistant after download.');return false;">Where's the ZIP?</a>
+    --></div>
+  </header>
+
+  <main class="main-grid">
+    <section class="panel intro">
+      <h2>Ethical & Safety Notice</h2>
+      <p>
+        This material presents commands and examples from your assignment. <strong>Only use these tools in labs you own or where you have explicit written permission.</strong>
+        Unauthorized testing of third-party systems is illegal. The PDF includes the same content and this same warning.
+      </p>
+
+      <div class="animated-note">
+        <div class="pulse"></div>
+        <div>
+          <strong>Tip:</strong> Click the copy icons next to any command to copy it to your clipboard.
+        </div>
+      </div>
+    </section>
+
+    <section class="panel commands">
+      <h2>Core Commands</h2>
+
+      <div class="cmd-card">
+        <div class="cmd-header">1) Target URL</div>
+        <pre id="cmd-1">python sqlmap.py -u "http://localhost/dvwa/vulnerabilities/sqli/?id=1&Submit=Submit"</pre>
+        <button class="copy" data-target="cmd-1">Copy</button>
+        <p class="explain"><strong>-u</strong> specifies the target URL for testing.</p>
+      </div>
+
+      <div class="cmd-card">
+        <div class="cmd-header">2) List Databases</div>
+        <pre id="cmd-2">python sqlmap.py -u "URL" --dbs</pre>
+        <button class="copy" data-target="cmd-2">Copy</button>
+        <p class="explain"><strong>--dbs</strong> displays available databases.</p>
+      </div>
+
+      <div class="cmd-card">
+        <div class="cmd-header">3) List Tables in a Database</div>
+        <pre id="cmd-3">python sqlmap.py -u "URL" -D databasename --tables</pre>
+        <button class="copy" data-target="cmd-3">Copy</button>
+        <p class="explain"><strong>-D</strong> selects a database. <strong>--tables</strong> lists tables.</p>
+      </div>
+
+      <div class="cmd-card">
+        <div class="cmd-header">4) Dump Table Data</div>
+        <pre id="cmd-4">python sqlmap.py -u "URL" -D databasename -T tablename --dump</pre>
+        <button class="copy" data-target="cmd-4">Copy</button>
+        <p class="explain"><strong>-T</strong> selects a table. <strong>--dump</strong> extracts table contents.</p>
+      </div>
+
+      <div class="cmd-card">
+        <div class="cmd-header">5) Use Cookie (e.g., from XSS)</div>
+        <pre id="cmd-5">python sqlmap.py -u "URL" --cookie="cookievalue" --dbs</pre>
+        <button class="copy" data-target="cmd-5">Copy</button>
+        <p class="explain">Use <strong>--cookie</strong> when access requires a cookie/session value.</p>
+      </div>
+
+    </section>
+
+    <section class="panel steps">
+      <h2>Step-by-step Walkthrough</h2>
+
+      <ol class="steps-list" id="stepsList">
+        <li><strong>Prepare a safe lab:</strong> Use a local VM or intentionally vulnerable app (e.g., DVWA) inside an isolated network.</li>
+        <li><strong>Install prerequisites:</strong> Have Python and sqlmap repository downloaded on your machine.</li>
+        <li><strong>Start the target:</strong> Start your local lab web app (e.g., DVWA on localhost).</li>
+        <li><strong>Run discovery:</strong> Use <em>--dbs</em> to enumerate databases (only in your lab).</li>
+        <li><strong>Inspect structure:</strong> Use <em>-D</em> and <em>--tables</em> to list tables in a chosen DB.</li>
+        <li><strong>Extract for analysis:</strong> Use <em>-T</em> and <em>--dump</em> to retrieve table fields (for legitimate testing).</li>
+        <li><strong>Session-based testing:</strong> If site requires cookies, capture them in your authorized lab and use <em>--cookie</em>.</li>
+      </ol>
+
+      <div class="walk-controls">
+        <button id="prevStep" class="small">Previous</button>
+        <span id="stepTracker">Step 1 / 7</span>
+        <button id="nextStep" class="small">Next</button>
+      </div>
+
+      <div class="step-display" id="stepDisplay">
+        <h3>Step 1 — Prepare a safe lab</h3>
+        <p>Create an isolated environment (VM, container, or offline lab) for testing. Never test public systems without permission.</p>
+      </div>
+    </section>
+
+    <section class="panel resources">
+      <h2>Extras & Resources</h2>
+      <ul>
+        <li>Animated UI with CSS keyframes and subtle motion for clarity.</li>
+        <li>PDF guide includes the same commands and safety notes.</li>
+        <li>Zip package contains everything so you can run the site locally.</li>
+      </ul>
+
+      <div class="download-area">
+        <a class="btn" href="commands_guide.pdf" download>Download PDF (standalone)</a>
+        <!--<button class="btn ghost" id="openZipBtn">Download ZIP (from assistant)</button>
+      --></div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <small>Made for Practical Assignment — Use responsibly.</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

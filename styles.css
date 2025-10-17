@@ -17,6 +17,7 @@ body{
   line-height:1.5;
 }
 
+
 /* Animated background blobs */
 .bg-anim{
   position:fixed; inset:0; z-index:0; overflow:hidden;
